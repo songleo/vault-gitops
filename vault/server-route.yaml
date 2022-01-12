@@ -1,0 +1,19 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: vault
+  labels:
+    helm.sh/chart: vault-0.18.0
+    app.kubernetes.io/name: vault
+    app.kubernetes.io/instance: vault
+    app.kubernetes.io/managed-by: Helm
+spec:
+  host: chart-example.local
+  to:
+    kind: Service
+    name: vault
+    weight: 100
+  port:
+    targetPort: 8200
+  tls:
+    termination: passthrough
